@@ -1,5 +1,7 @@
+import 'package:doctor_booking/shared/widgets/avatars/circle_avatar_with_text_label.dart';
 import 'package:doctor_booking/shared/widgets/titles/section_title.dart';
 import 'package:flutter/material.dart';
+import 'package:model/models.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -104,9 +106,30 @@ class HomeView extends StatelessWidget {
         child: Column(
           children: [
             _DoctorCategories(),
+            const SizedBox(
+              height: 16.0,
+            ),
+            _MySchedule(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _MySchedule extends StatelessWidget {
+  const _MySchedule({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SectionTitle(
+          title: 'My Schedule',
+          action: 'See all',
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }
@@ -122,6 +145,18 @@ class _DoctorCategories extends StatelessWidget {
           title: 'Categories',
           action: 'See all',
           onPressed: () {},
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: DoctorCategory.values
+              .take(5)
+              .map((category) => Expanded(
+                    child: CircleAvatarWithTextLabel(
+                      icon: category.icon,
+                      label: category.name,
+                    ),
+                  ))
+              .toList(),
         ),
       ],
     );
