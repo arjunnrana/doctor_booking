@@ -1,3 +1,4 @@
+import 'package:doctor_booking/shared/widgets/titles/section_title.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class HomeView extends StatelessWidget {
               'Welcome',
               style: textTheme.bodyMedium,
             ),
-            SizedBox(
+            const SizedBox(
               height: 4.0,
             ),
             Text(
@@ -37,7 +38,7 @@ class HomeView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4.0,
             ),
             Row(
@@ -46,7 +47,7 @@ class HomeView extends StatelessWidget {
                   Icons.location_on,
                   color: colorScheme.secondary,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 4.0,
                 ),
                 Text(
@@ -66,37 +67,63 @@ class HomeView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_outlined,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 8.0,
           )
         ],
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(64.0),
+          preferredSize: const Size.fromHeight(64.0),
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               decoration: InputDecoration(
-                  hintText: 'Search for doctors...',
-                  prefixIcon: Icon(Icons.search),
-                  suffixIcon: Container(
-                    margin: EdgeInsets.all(4.0),
-                    padding: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                        color: colorScheme.onSurfaceVariant,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    child: Icon(
-                      Icons.filter_alt_outlined,
-                      color: colorScheme.surfaceContainerHighest,
-                    ),
-                  )),
+                hintText: 'Search for doctors...',
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: Container(
+                  margin: const EdgeInsets.all(4.0),
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                      color: colorScheme.onSurfaceVariant,
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: Icon(
+                    Icons.filter_alt_outlined,
+                    color: colorScheme.surfaceContainerHighest,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
       ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            _DoctorCategories(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DoctorCategories extends StatelessWidget {
+  const _DoctorCategories({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SectionTitle(
+          title: 'Categories',
+          action: 'See all',
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }
